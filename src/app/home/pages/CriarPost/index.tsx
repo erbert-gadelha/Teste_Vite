@@ -10,24 +10,8 @@ const CriarPost = () => {
 
   const submeter = async (event) => {
     event.preventDefault();
-    try {
-      //const state = {user: '0', title: '1', body: '2', tags:'3'};
-      const response = await axios.post('https://teste-fastapi.vercel.app/post', state);
-      window.alert(response.data.resposta);
-      console.log(response.data);
-    } catch (error) {
-      window.alert(error);
-    }
-  };
 
-
-  const handle = (event) => {
-    event.preventDefault();
     let temp;
-
-    if(botao == null)
-      botao = document.getElementById("botao");
-    
     temp = document.getElementById("input-user");
     if (temp != null) {
       console.warn('todos os characteres em branco serão removidos de user');
@@ -45,17 +29,16 @@ const CriarPost = () => {
         state.tags = temp.value.replaceAll(/\s/g,'').split(",");
     }
 
-    
-    if(botao != null) {
-      if (state.user == '' || state.title == '' || state.body == '' || state.tags == '')
-          botao.disabled = true;
-      else
-          botao.disabled = false;
-      
+    try {
+      //const state = {user: '0', title: '1', body: '2', tags:'3'};
+      const response = await axios.post('https://teste-fastapi.vercel.app/post', state);
+      window.alert(response.data.resposta);
+      console.log(response.data);
+    } catch (error) {
+      window.alert(error);
     }
-    
-    
-    
+  };
+  
   }
 
   return (
@@ -97,7 +80,7 @@ const CriarPost = () => {
             />
           </div>
 
-        <button id="botao" data-cy="create" type="submit" className={styles.botao} disabled>
+        <button id="botao" data-cy="create" type="submit" className={styles.botao}>
           post
         </button>
 

@@ -37,6 +37,7 @@ const CriarPost = () => {
   }, [retorno]);
 */
   
+/*
   const handle = (event) => {
     event.preventDefault();
 
@@ -52,7 +53,7 @@ const CriarPost = () => {
       window.alert(error);
     }
   }
-
+*/
   return (
     <section className={styles.container}>
       <h1 className={styles.title}>Buscar por Tags</h1>
@@ -63,7 +64,6 @@ const CriarPost = () => {
             data-cy="input-tags"
             placeholder="tags (ex: humor, pokemon)"
             className={`${styles.input_bar} ${styles.input_tags}`}
-            onChange={handle}
           />
 
           <Button id="botao" data-cy="create" type="submit" className={styles.botao} disabled>
