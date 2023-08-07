@@ -12,7 +12,7 @@ const CriarPost = () => {
     event.preventDefault();
     try {
       //const state = {user: '0', title: '1', body: '2', tags:'3'};
-      const response = await axios.post('http://teste-fastapi.vercel.app/post', state);
+      const response = await axios.post('https://teste-fastapi.vercel.app/post', state);
       window.alert(response.data.resposta);
       console.log(response.data);
     } catch (error) {

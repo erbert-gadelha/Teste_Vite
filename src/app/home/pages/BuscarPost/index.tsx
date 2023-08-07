@@ -17,7 +17,7 @@ const CriarPost = () => {
   const submeter = async (event) => {
     event.preventDefault();
       try {
-        const response = await axios.get(`http://teste-fastapi.vercel.app/search?tags=${tags['content']}`);
+        const response = await axios.get(`https://teste-fastapi.vercel.app/search?tags=${tags['content']}`);
         setRetorno(response.data.resposta);
         console.log(response.data.resposta);        
       } catch (error) {
