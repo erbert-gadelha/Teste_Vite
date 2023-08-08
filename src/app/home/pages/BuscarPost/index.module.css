@@ -10,7 +10,9 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  
+  width: 600px;
+  max-width: 90vw;
 }
 
 .title {
@@ -25,12 +27,13 @@
   align-items: center;
   justify-content: center;
   height: min-content;
-  width: 600px;
+  width: 100%;
   gap: var(--gap);
 }
 
 .input_bar {
   background-color: #ffffff;
+  flex: 1;
   padding: 10px;
   border: none;
   font-size: medium;

@@ -10,7 +10,10 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f0f0f0;
+  /*background-color: #f0f0f0;*/
+  /*background-color: red;*/
+  width: 600px;
+  max-width: 90vw;
 }
 
 .title {
@@ -25,7 +28,8 @@
   align-items: center;
   justify-content: center;
   height: min-content;
-  width: 600px;
+  /*width: 600px;*/
+  width: 100%;
   gap: var(--gap);
 }
 
@@ -54,11 +58,12 @@
 
 .input_user {
   height: 100%;
+  width: 40%;
 }
 
 .input_title {
   height: 100%;
-  flex: 1;
+  width: 60%;
 }
 
 .input_body {
