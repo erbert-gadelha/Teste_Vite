@@ -13,7 +13,9 @@ const Postagem = (id) => {
     async function fetch() {
       try {
         //console.log(id[0])
+        //const response = await axios.get(`http://127.0.0.1:8000/post?ids=${id[0]}`);
         const response = await axios.get(`https://teste-fastapi.vercel.app/post?ids=${id[0]}`);
+        
         const aux = Object.values(response.data);
         setRetorno(aux[0]);
         console.log(aux[0]);

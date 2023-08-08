@@ -6,86 +6,80 @@ import React, { useState, useEffect } from 'react';
 import { forEach } from "cypress/types/lodash";
 import Postagem from "../Postagem";
 
-const CriarPost = () => {
-  
-  let button_ = document.getElementById("botao");
-  let input_ = document.getElementById("input-tags");
-  const tags = {'content': ''};
+export default class CriarPost extends React.Component {
 
-  const [retorno, setRetorno] = useState(null);
-  
-  const submeter = async (event) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tags: '',
+      response: null,
+      disableButton: true
+    }
+    this.submitSearch  = this.submitSearch.bind(this);
+    this.handleInputChange  = this.handleInputChange.bind(this);
+  }
+   
+  async submitSearch (event) {
     event.preventDefault();
       try {
-        const response = await axios.get(`https://teste-fastapi.vercel.app/search?tags=${tags['content']}`);
-        setRetorno(response.data.resposta);
+        let temp = this.state.tags;
+        temp = temp.replaceAll(/\s/g,'');
+
+        //const response = await axios.get(`http://127.0.0.1:8000/search?tags=${temp}`);
+        const response = await axios.get(`https://teste-fastapi.vercel.app/search?tags=${temp}`);
+        this.setState({response: response.data.resposta});
+
         console.log(response.data.resposta);        
       } catch (error) {
         window.alert(error);
       }
   }
-/*
-  useEffect(() => {
-    //window.alert(retorno);
-    console.log(retorno);
-
-    if (retorno != null) {
-      retorno.forEach((value) => {
-        console.log(value[0]);
-      });
-    }
-  }, [retorno]);
-*/
-  
-/*
-  const handle = (event) => {
-    event.preventDefault();
-
-    if(button_ == null)
-      button_ = document.getElementById("botao");
-    if(input_ == null)
-      input_ = document.getElementById("input-tags");
-
-    try{
-      tags['content'] = input_.value.replaceAll(/\s/g,'');
-      button_.disabled = (tags['content'] == '');
-    } catch(error) {
-      window.alert(error);
-    }
+   
+  handleInputChange (event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value }, () => {
+      let temp = this.state.tags;
+      temp = temp.replaceAll(/\s/g,'');
+      
+      this.setState({ disableButton: (temp=='') });
+    });
   }
-*/
-  return (
-    <section className={styles.container}>
-      <h1 className={styles.title}>Buscar por Tags</h1>
-      <form className={styles.formContainer} onSubmit={submeter}>
-        <div className={styles.search_bar}>
-          <input
-            id="input-tags"
-            data-cy="input-tags"
-            placeholder="tags (ex: humor, pokemon)"
-            className={`${styles.input_bar} ${styles.input_tags}`}
-          />
 
-          <Button id="botao" data-cy="create" type="submit" className={styles.botao} disabled>
-            search
-          </Button>
+  render(){
+    return (
+      <section className={styles.container}>
+        <h1 className={styles.title}>Buscar por Tags</h1>
+        <form className={styles.formContainer} onSubmit={this.submitSearch}>
+          <div className={styles.search_bar}>
+            <input
+              id="input-tags"
+              name="tags"
+              data-cy="input-tags"
+              placeholder="tags (ex: humor, pokemon)"
+              className={`${styles.input_bar} ${styles.input_tags}`}
+              onChange={this.handleInputChange}
+            />
+
+            <Button id="botao" data-cy="create" type="submit" className={styles.botao} disabled={this.state.disableButton}>
+              search
+            </Button>
+            
+          </div>
           
-        </div>
-        
-        {retorno === null ? (
-          <span>.</span>
-        ) : retorno.length === 0 ? (
-          <span>nenhum post correspondente</span>
-        ) : (
-          retorno.map((param) => <Postagem key={param.id} {...param} />)
-        )}
+          {this.state.response === null ? (
+            <span>.</span>
+          ) : this.state.response.length === 0 ? (
+            <span>nenhum post correspondente</span>
+          ) : (
+            this.state.response.map((post) => <Postagem key={post.id} {...post} />)
+          )}
 
-        <Link data-cy="view-tests" to="/">
-          CRIAR POSTS
-        </Link>
-      </form>
-    </section>
-  );
-};
+          <Link data-cy="view-tests" to="/">
+            CRIAR POSTS
+          </Link>
+        </form>
+      </section>
+    );
+  }
+}
 
-export default CriarPost;
