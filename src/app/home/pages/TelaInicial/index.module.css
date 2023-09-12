@@ -1,0 +1,149 @@
+:root {
+    --topbar-color: #ffffffad;
+    --topbar-gradient: 25px;
+}
+  
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: fit-content;
+    overflow-x: hidden;
+    background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+
+    padding-bottom: 16px;
+}
+
+.esq {
+    width: 50%;
+    height: 100%;
+    padding: 0 8px;
+}
+
+.dir {
+    width: 50%;
+    height: 100%;
+    padding: 0 8px;
+}
+
+.dir h1 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0.3rem;
+}
+
+.dir div {
+    width: 100%;
+    height: 640px;
+    margin: 0;
+    padding: 16px;
+    
+    background-color: #00000013;
+    border: 1px solid gray;
+
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.barra {
+    position: relative;
+}
+
+.barra_aux {
+    /*background-color: red;*/
+    display: flex;
+    flex-direction: column;
+
+    flex-wrap: wrap;
+    position: relative;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    width: 100%; /* Defina a largura para 100% no elemento filho */
+    margin: 0; /* Remova 'margin: auto' */
+    padding: 0 8px; /* Remova 'padding: auto' */
+    
+    gap: 8px;
+    height: 160px;
+}
+
+.barra::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 8px;
+    
+    /*background-color: blue;*/
+    background: linear-gradient(270deg, white, rgba(255, 255, 255, 0) 100%);
+    right: 0;
+    top: 0;
+}
+
+.barra::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 8px;
+    
+    /*background-color: blue;*/
+    background: linear-gradient(90deg, white, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+    left: 0;
+    top: 0;
+}
+
+
+
+::selection {
+    background-color: deeppink;
+    color: white;
+    
+    text-transform: capitalize;
+
+}
+
+
+.bloco {
+    height: 140px;
+    width: 240px;
+    padding: 8px;
+
+    background-color: #00000013;
+    border: 1px solid gray;
+
+    cursor: pointer;
+
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
+
+.esq h2 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0.6rem;
+}
+
+
+
+
+@media (max-width: 840px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .esq {
+        width: 100%;
+    }
+    
+    .dir {
+        width: 100%;
+    }
+}
